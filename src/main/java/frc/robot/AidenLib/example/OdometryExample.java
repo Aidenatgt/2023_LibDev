@@ -7,7 +7,7 @@ public class OdometryExample {
 
     private Odometry3D odometry = new Odometry3D();
 
-    public void periodic(Drivetrain drive) {
-        Pose3d pose = odometry.update(drive.getChassisSpeeds(), drive.getRotation());
+    public void periodic(Drivetrain drive, IMU imu) {
+        Pose3d pose = odometry.update(drive.getChassisSpeeds(), imu.getHeading());
     }
 }

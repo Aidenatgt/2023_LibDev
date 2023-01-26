@@ -14,11 +14,11 @@ public class EstimatorExample {
     private RotationEstimator3D rotEstimator = new RotationEstimator3D(imuStdDev);
     private PoseEstimator3D poseEstimator = new PoseEstimator3D(driveStDev);
 
-    public void periodic(Drivetrain drive, Camera cam) {
+    public void periodic(Drivetrain drive, IMU imu, Camera cam) {
         Pose3d camPose = cam.getPose();
         Rotation3d camRot = camPose.getRotation();
         double[] stDevs = cam.getStdDevs();
-        Rotation3d rotEstimate = rotEstimator.estimate(drive.getRotation(),
+        Rotation3d rotEstimate = rotEstimator.estimate(imu.getHeading(),
             new Data[] {new Data(camRot.getZ(), stDevs[5])},
             new Data[] {new Data(camRot.getY(), stDevs[4])},
             new Data[] {new Data(camRot.getX(), stDevs[3])}

@@ -8,12 +8,12 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import frc.robot.AidenLib.Timer;
 import frc.robot.AidenLib.math.Derivative;
 import frc.robot.AidenLib.math.Integral;
-import frc.robot.AidenLib.math.ParametricKalmanFilter;
+import frc.robot.AidenLib.math.ParametricWeightedFusion;
 import frc.robot.AidenLib.math.Data;
 
 /** A class which estimates the robot rotation in 3D space based on imu data fused with other measurements. */
 public class RotationEstimator3D {
-    private ParametricKalmanFilter filter;
+    private ParametricWeightedFusion filter;
 
     private Rotation3d lastEstimate;
 
@@ -29,7 +29,7 @@ public class RotationEstimator3D {
      */
     public RotationEstimator3D(double imuStDev, Rotation3d initialRot) {
         this.lastEstimate = initialRot;
-        this.filter = new ParametricKalmanFilter(3);
+        this.filter = new ParametricWeightedFusion(3);
         this.xRate = new Derivative(initialRot.getX());
         this.yRate = new Derivative(initialRot.getY());
         this.zRate = new Derivative(initialRot.getZ());

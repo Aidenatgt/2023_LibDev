@@ -8,15 +8,15 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 
-import frc.robot.AidenLib.math.ParametricKalmanFilter;
-import frc.robot.AidenLib.math.ParametricKalmanFilter.InvalidParamterSize;
+import frc.robot.AidenLib.math.ParametricWeightedFusion;
+import frc.robot.AidenLib.math.ParametricWeightedFusion.InvalidParamterSize;
 import frc.robot.AidenLib.Timer;
 import frc.robot.AidenLib.math.Data;
 import frc.robot.AidenLib.math.Integral;
 
 /** A class which works similarly to {@link Odometry3D} but in addition to drivetrain data it also fuses other measures of the robot position. */
 public class PoseEstimator3D {
-    private ParametricKalmanFilter filter;
+    private ParametricWeightedFusion filter;
     private Translation3d lastSpeeds;
     private Pose3d lastEstimate;
     private double driveStDev;
@@ -28,7 +28,7 @@ public class PoseEstimator3D {
      * @param driveStDev The standard deviation of the drive data in <b>m</b>.
      */
     public PoseEstimator3D(Pose3d initialPose, double driveStDev) {
-        this.filter = new ParametricKalmanFilter(6);
+        this.filter = new ParametricWeightedFusion(6);
         this.lastSpeeds = new Translation3d();
         this.lastEstimate = initialPose;
         this.driveStDev = driveStDev;

@@ -3,23 +3,23 @@ package frc.robot.AidenLib.math;
 /**
  * Fuses data weighted on the standard deviation in the data from the "true" value.
  */
-public class KalmanFilter {
+public class WeightedFusion {
 
     private double val;
 
     /**
-     * Constructs an instance of the {@link KalmanFilter} class to start at a specified value.
+     * Constructs an instance of the {@link WeightedFusion} class to start at a specified value.
      * @param startingVal This is the initial value of the value estimated by the filter. This may be valuable 
      * if an algorithm of relative measurement is made relative to the filter's estimation.
      */
-    public KalmanFilter(double startingVal) {
+    public WeightedFusion(double startingVal) {
         val = startingVal;
     }
 
     /**
-     * Constructs an instance of the {@link KalmanFilter} class with a starting value of <b>0.0</b>.
+     * Constructs an instance of the {@link WeightedFusion} class with a starting value of <b>0.0</b>.
      */
-    public KalmanFilter() {
+    public WeightedFusion() {
         this(0.0);
     }
 
